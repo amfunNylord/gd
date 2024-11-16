@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < m_maxCount; i++ ) // тест, заполнить рандомные €чейки
         {
-            AddItem(i, m_data.m_items[Random.Range(0, m_data.m_items.Count)], Random.Range(1, 99));
+            AddItem(i, m_data.m_items[Random.Range(0, m_data.m_items.Count)], 1);
         }
         UpdateInventory();
     }
@@ -52,41 +52,6 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
-    public void SearchForSameItem(Item item, int count)
-    {
-        for (int i = 0; i < m_maxCount; i++)
-        {
-            if (m_items[i].m_id == item.m_id)
-            {
-                if (m_items[0].m_count < 128)
-                {
-                    m_items[i].m_count += count;
-                    if (m_items[i].m_count > 128)
-                    {
-                        count = m_items[i].m_count - 128;
-                        m_items[i].m_count = 64;
-                    }
-                    else
-                    {
-                        count = 0;
-                        i = m_maxCount;
-                    }
-                }
-            }
-        }
-        if (count > 0)
-        {
-            for (int i = 0; i < m_maxCount; i++)
-            {
-                if (m_items[i].m_id == 0)
-                {
-                    AddItem(i, item, count);
-                    i = m_maxCount;
-                }
-            }
-        }
-    }    
 
     public void AddItem(int id, Item item, int count)
     {
@@ -169,26 +134,8 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            ItemInventory II = m_items[int.Parse(m_es.currentSelectedGameObject.name)];
-
-            if (m_currentItem.m_id != II.m_id)
-            {
-                AddInventoryItem(m_currentId, II);
-                AddInventoryItem(int.Parse(m_es.currentSelectedGameObject.name), m_currentItem);
-            }
-            else
-            {
-                if (II.m_count + m_currentItem.m_count <= 128)
-                {
-                    II.m_count += m_currentItem.m_count;
-                }
-                else
-                {
-                    AddItem(m_currentId, m_data.m_items[II.m_id], II.m_count + m_currentItem.m_count - 128);
-                    II.m_count = 128;
-                }
-                II.m_itemGameObject.GetComponentInChildren<Text>().text = II.m_count.ToString();
-            }
+            AddInventoryItem(m_currentId, m_items[int.Parse(m_es.currentSelectedGameObject.name)]);
+            AddInventoryItem(int.Parse(m_es.currentSelectedGameObject.name), m_currentItem);
           
             m_currentId = -1;
 

@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 217, y: 18.910004}
-  m_SizeDelta: {x: -537.91, y: -176.56}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182031411
 MonoBehaviour:
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_items: []
   m_gameObjectShow: {fileID: 679488808848406157, guid: 03e887e947dbb994ca3b4293e4237145, type: 3}
   m_inventoryMainObject: {fileID: 1809094774}
-  m_maxCount: 12
+  m_maxCount: 75
   m_cam: {fileID: 519420031}
   m_es: {fileID: 893238242}
   m_currentId: -1
@@ -668,8 +668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -35.37, y: -23.58}
+  m_AnchoredPosition: {x: 0, y: 38.70999}
+  m_SizeDelta: {x: -35.37, y: -100.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1809094776
 MonoBehaviour:
