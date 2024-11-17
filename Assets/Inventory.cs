@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Inventory : MonoBehaviour
     public GameObject m_gameObjectShow;
 
     public GameObject m_inventoryMainObject;
-    public int m_maxCount;
+    public int m_maxCount; // количество позиций куда можно поставить
 
     public Camera m_cam;
     public EventSystem m_es;
@@ -23,6 +24,9 @@ public class Inventory : MonoBehaviour
 
     public GameObject m_background;
 
+    public GameObject m_availableFurnitureObject;
+    public List<ItemInventory> m_furnitureItems = new List<ItemInventory>();
+
     public void Start()
     {
         if (m_items.Count == 0)
@@ -30,10 +34,19 @@ public class Inventory : MonoBehaviour
             AddGraphics();
         }
 
-        for (int i = 0; i < m_maxCount; i++ ) // тест, заполнить рандомные ячейки
+        /*for (int i = 0; i < m_maxCount; i++ ) // тест, заполнить рандомные ячейки
         {
             AddItem(i, m_data.m_items[Random.Range(0, m_data.m_items.Count)], 1);
+        }*/
+
+        for (int i = 0; i < m_data.m_items.Count; i++) 
+        {
+            m_furnitureItems[i].m_id = m_data.m_items[i].m_id;
+            m_furnitureItems[i].m_count = 1;
+            m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[i].m_img;
+            m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
         }
+
         UpdateInventory();
     }
 
@@ -103,6 +116,23 @@ public class Inventory : MonoBehaviour
             tempButton.onClick.AddListener(delegate { SelectObject(); });
             m_items.Add(ii);
         }
+
+        for (int i = 0; i < m_data.m_items.Count; i++)
+        {
+            GameObject newItem = Instantiate(m_gameObjectShow, m_availableFurnitureObject.transform) as GameObject;
+            newItem.name = i.ToString();
+            ItemInventory ii = new ItemInventory();
+            ii.m_itemGameObject = newItem;
+            RectTransform rt = newItem.GetComponent<RectTransform>();
+            rt.localPosition = new Vector3(0, 0, 0);
+            rt.localScale = new Vector3(1, 1, 1);
+            newItem.GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
+
+            Button tempButton = newItem.GetComponent<Button>();
+
+            tempButton.onClick.AddListener(delegate { SelectObject(); });
+            m_furnitureItems.Add(ii);
+        }
     }
 
     public void UpdateInventory()
@@ -119,8 +149,24 @@ public class Inventory : MonoBehaviour
             }
             m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_items[i].m_id].m_img;
         }
+
+        for (int i = 0; i < m_furnitureItems.Count; ++i)
+        {
+            if (m_data.m_items[i].m_id != 0 && m_furnitureItems[i].m_count > 1)
+            {
+                m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_furnitureItems[i].m_count.ToString();
+            }
+            else
+            {
+                m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+            }
+            m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_furnitureItems[i].m_id].m_img;
+        }
+
     }
 
+    // todo: переделать чтобы можно было брать из инвентаря
+    // нужно подумать над названиями
     public void SelectObject()
     {
         if (m_currentId == -1)
