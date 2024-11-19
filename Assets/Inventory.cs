@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using static UnityEditor.Progress;
+using System.Xml.Schema;
 
 public class Inventory : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Inventory : MonoBehaviour
     public List<ItemInventory> m_furnitureItems = new List<ItemInventory>();
 
     public bool m_isAvailableFurniture = false;
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
 
     public void Start()
     {
@@ -166,28 +169,6 @@ public class Inventory : MonoBehaviour
 
     }
 
-    // todo: смена когда меняешь в доступных местах
-    /*public void SelectObject()
-    {
-        if (m_currentId == -1)
-        {
-            m_currentId = int.Parse(m_es.currentSelectedGameObject.name.Substring(0, m_es.currentSelectedGameObject.name.Length - 1));
-            m_currentItem = CopyInventoryItem(m_items[m_currentId]);
-            m_movingObject.gameObject.SetActive(true);
-            m_movingObject.GetComponent<Image>().sprite = m_data.m_items[m_currentItem.m_id].m_img;
-
-            AddItem(m_currentId, m_data.m_items[0], 0);
-        }
-        else
-        {
-            AddInventoryItem(m_currentId, m_items[int.Parse(m_es.currentSelectedGameObject.name.Substring(0, m_es.currentSelectedGameObject.name.Length - 1))]);
-            AddInventoryItem(int.Parse(m_es.currentSelectedGameObject.name.Substring(0, m_es.currentSelectedGameObject.name.Length - 1)), m_currentItem);
-          
-            m_currentId = -1;
-
-            m_movingObject.gameObject.SetActive(false);
-        }
-    }*/
     public void SelectObject()
     {
         if (m_currentId == -1)
@@ -253,6 +234,52 @@ public class Inventory : MonoBehaviour
         newItemInventory.m_count = old.m_count;
 
         return newItemInventory;
+    }
+
+    public bool CheckWin()
+    {
+        bool res = true;
+
+        Dictionary<int, int> furnitureMap = new Dictionary<int, int>()
+        {
+            {m_furnitureItems[1].m_id, 0 },
+            {m_furnitureItems[2].m_id, 0 }
+        };
+
+        for (int i = 0; i < m_items.Count; ++i)
+        {
+            if (furnitureMap.ContainsKey(m_items[i].m_id))
+            {
+                if (furnitureMap.TryGetValue(m_items[i].m_id, out int value))
+                {
+                    value++;
+                    furnitureMap.Remove(m_items[i].m_id);
+                    furnitureMap.Add(m_items[i].m_id, value);
+                }
+            }
+        }
+
+        foreach (var data in furnitureMap)
+        {
+            if (data.Value != 1)
+            {
+                res = false;
+            }
+        }
+
+        return res;
+    }
+
+    public void DoResult()
+    {
+        if (CheckWin())
+        {
+            winCanvas.SetActive(true);
+        }
+        else
+        {
+            loseCanvas.SetActive(true);
+        }    
     }
 }
 
