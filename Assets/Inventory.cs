@@ -140,368 +140,149 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < m_maxCount; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_items[i].m_id].m_img;
-            }
-
-            for (int i = 0; i < m_furnitureItems.Count; ++i)
-            {
-                if (m_data.m_items[i].m_id != 0 && m_furnitureItems[i].m_count > 1)
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_furnitureItems[i].m_count.ToString();
-                }
-                else
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_furnitureItems[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[1].m_img;
             }
         }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             for (int i = 0; i < m_maxCount; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_items[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[1].m_img;
             }
 
             for (int i = 0; i < 4; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 7; i < 11; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 33; i < 37; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";   
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 11; i < 13; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 20; i < 22; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 22; i < 24; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 31; i < 33; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 40; i < 44; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
-            }
-
-            for (int i = 0; i < m_furnitureItems.Count; ++i)
-            {
-                if (m_data.m_items[i].m_id != 0 && m_furnitureItems[i].m_count > 1)
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_furnitureItems[i].m_count.ToString();
-                }
-                else
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_furnitureItems[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             for (int i = 0; i < m_maxCount; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_items[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";  
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[1].m_img;
             }
 
             for (int i = 0; i < 6; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 8; i < 11; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 11; i < 16; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 19; i < 22; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 22; i < 26; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 30; i < 33; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
             for (int i = 33; i < 36; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
             for (int i = 41; i < 44 ; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
-            }
-
-            for (int i = 0; i < m_furnitureItems.Count; ++i)
-            {
-                if (m_data.m_items[i].m_id != 0 && m_furnitureItems[i].m_count > 1)
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_furnitureItems[i].m_count.ToString();
-                }
-                else
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_furnitureItems[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
         }
         else if (SceneManager.GetActiveScene().buildIndex == 3)
         {
             for (int i = 0; i < m_maxCount; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_items[i].m_id].m_img;
-            }
-
-            for (int i = 0; i < m_furnitureItems.Count; ++i)
-            {
-                if (m_data.m_items[i].m_id != 0 && m_furnitureItems[i].m_count > 1)
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_furnitureItems[i].m_count.ToString();
-                }
-                else
-                {
-                    m_furnitureItems[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_furnitureItems[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[m_furnitureItems[i].m_id].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[1].m_img;
             }
 
             for (int i = 0; i < 13; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
             for (int i = 20; i < 24; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
             for (int i = 31; i < 37; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
 
             for (int i = 40; i < 44; ++i)
             {
-                if (m_items[i].m_id != 0 && m_items[i].m_count > 1)
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = m_items[i].m_count.ToString();
-                }
-                else
-                {
-                    m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
-                }
-                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[3].m_img;
+                m_items[i].m_itemGameObject.GetComponentInChildren<Text>().text = "";
+                m_items[i].m_itemGameObject.GetComponent<Image>().sprite = m_data.m_items[0].m_img;
             }
         }
     }
@@ -576,12 +357,12 @@ public class Inventory : MonoBehaviour
     public bool CheckWin()
     {
         bool res = true;
+        Dictionary<int, int> furnitureMap = new Dictionary<int, int>();
 
-        Dictionary<int, int> furnitureMap = new Dictionary<int, int>()
+        for (int i = 2; i < m_furnitureItems.Count; ++i)
         {
-            {m_furnitureItems[1].m_id, 0 },
-            {m_furnitureItems[2].m_id, 0 }
-        };
+            furnitureMap.Add(m_furnitureItems[i].m_id, 0);
+        }
 
         for (int i = 0; i < m_items.Count; ++i)
         {

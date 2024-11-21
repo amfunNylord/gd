@@ -775,17 +775,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_items:
   - m_id: 0
-    m_name: Empty
-    m_img: {fileID: 21300000, guid: 37556e1cdf0a45d4b926d1628276bab8, type: 3}
+    m_name: not_available
+    m_img: {fileID: 21300000, guid: 896ee7fe2c61b3a4487482b9814f6d9b, type: 3}
   - m_id: 1
-    m_name: tv
-    m_img: {fileID: 21300000, guid: f3250df4956567449841c4a992533650, type: 3}
+    m_name: empty
+    m_img: {fileID: 21300000, guid: 37556e1cdf0a45d4b926d1628276bab8, type: 3}
   - m_id: 2
     m_name: washing_machine
     m_img: {fileID: 21300000, guid: fb277450cacee334186e874f99295d04, type: 3}
   - m_id: 3
-    m_name: not_available
-    m_img: {fileID: 21300000, guid: 896ee7fe2c61b3a4487482b9814f6d9b, type: 3}
+    m_name: pc
+    m_img: {fileID: 21300000, guid: 768b2fe266768b041a629495d729e6bf, type: 3}
+  - m_id: 4
+    m_name: chair
+    m_img: {fileID: 21300000, guid: 11b65716af94a18489a42da066d94234, type: 3}
+  - m_id: 5
+    m_name: tv
+    m_img: {fileID: 21300000, guid: f3250df4956567449841c4a992533650, type: 3}
 --- !u!1 &659170499
 GameObject:
   m_ObjectHideFlags: 0
