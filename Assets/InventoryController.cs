@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryController : MonoBehaviour
 {
-    [HideInInspector]
     private ItemGrid selectedItemGrid;
 
     public ItemGrid SelectedItemGrid 
@@ -45,11 +45,6 @@ public class InventoryController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InsertRandomItem();
-        }
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             RotateItem();
@@ -76,15 +71,6 @@ public class InventoryController : MonoBehaviour
         selectedItem.Rotate();
     }
 
-    private void InsertRandomItem()
-    {
-        if (selectedItemGrid == null) { return; }
-        CreateRandomItem();
-        InventoryItem itemToInsert = selectedItem;
-        selectedItem = null;
-        InsertItem(itemToInsert);
-    }
-
     private void InsertItem(InventoryItem itemToInsert)
     {
         Vector2Int? posOnGrid = selectedItemGrid.FindSpaceForObjec(itemToInsert);
@@ -108,7 +94,7 @@ public class InventoryController : MonoBehaviour
         if (selectedItem == null)
         {
             itemToHighlight = selectedItemGrid.GetItem(positionOnGrid.x, positionOnGrid.y);
-            if (itemToHighlight != null)
+            if (itemToHighlight != null && itemToHighlight.itemData.name != "Empty")
             {
                 inventoryHighlight.Show(true); 
                 inventoryHighlight.SetSize(itemToHighlight);
@@ -197,5 +183,234 @@ public class InventoryController : MonoBehaviour
         {
             rectTransform.position = Input.mousePosition;
         }
+    }
+
+    [SerializeField] ItemGrid startItemGrid;
+    int spawnedItemsCount = 1; 
+    public void AddItemToStartGrid()
+    {
+        if (spawnedItemsCount >= items.Count)
+        {
+            return;
+        }
+
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        selectedItem = inventoryItem;
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvasTransform);
+        rectTransform.SetAsLastSibling();
+
+        int selectedItemID = spawnedItemsCount;
+        inventoryItem.Set(items[selectedItemID]);
+
+
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        Vector2Int? posOnGrid = startItemGrid.FindSpaceForObjec(itemToInsert);
+
+        if (posOnGrid == null) { return; }
+
+        startItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        spawnedItemsCount++;
+    }
+
+    [SerializeField] ItemGrid endItemGrid;
+    public bool CheckWin()
+    {
+        bool res = true;
+        Dictionary<ItemData, int> furnitureMap = new Dictionary<ItemData, int>();
+
+        for (int i = 1; i < items.Count; ++i)
+        {
+            furnitureMap.Add(items[i], 0);
+        }
+        
+        for (int i = 0; i < endItemGrid.inventoryItemSlot.GetLength(0); i++)
+        {
+            for (int j = 0; j < endItemGrid.inventoryItemSlot.GetLength(1); j++)
+            {
+                if (endItemGrid.inventoryItemSlot[i, j] != null)
+                {
+                    if (furnitureMap.ContainsKey(endItemGrid.inventoryItemSlot[i, j].itemData))
+                    {
+                        if (furnitureMap.TryGetValue(endItemGrid.inventoryItemSlot[i, j].itemData, out int value))
+                        {
+                            value++;
+                            furnitureMap.Remove(endItemGrid.inventoryItemSlot[i, j].itemData);
+                            furnitureMap.Add(endItemGrid.inventoryItemSlot[i, j].itemData, value);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (var data in furnitureMap)
+        {
+            if (data.Value == 0)
+            {
+                res = false;
+            }
+        }
+
+        return res;
+    }
+
+    [SerializeField] GameObject winCanvas;
+    [SerializeField] GameObject loseCanvas;
+
+    public void DoResult()
+    {
+        if (CheckWin())
+        {
+            winCanvas.SetActive(true);
+        }
+        else
+        {
+            loseCanvas.SetActive(true);
+        }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void LoadLevel2()
+    {
+        PlaceEmptyItem(0, 0);
+        PlaceEmptyItem(1, 0);
+        PlaceEmptyItem(2, 0); 
+        PlaceEmptyItem(3, 0);
+
+        PlaceEmptyItem(7, 0);
+        PlaceEmptyItem(8, 0);
+        PlaceEmptyItem(9, 0);
+        PlaceEmptyItem(10, 0);
+
+        PlaceEmptyItem(0, 1);
+        PlaceEmptyItem(1, 1);
+
+        PlaceEmptyItem(9, 1);
+        PlaceEmptyItem(10, 1);
+
+        PlaceEmptyItem(0, 2);
+        PlaceEmptyItem(1, 2);
+
+        PlaceEmptyItem(9, 2);
+        PlaceEmptyItem(10, 2);
+
+        PlaceEmptyItem(0, 3);
+        PlaceEmptyItem(1, 3);
+        PlaceEmptyItem(2, 3);
+        PlaceEmptyItem(3, 3);
+
+        PlaceEmptyItem(7, 3);
+        PlaceEmptyItem(8, 3);
+        PlaceEmptyItem(9, 3);
+        PlaceEmptyItem(10, 3);
+    }
+
+    public void LoadLevel3()
+    {
+        PlaceEmptyItem(0, 0);
+        PlaceEmptyItem(1, 0);
+        PlaceEmptyItem(2, 0);
+        PlaceEmptyItem(3, 0);
+        PlaceEmptyItem(4, 0);
+        PlaceEmptyItem(5, 0);
+
+        PlaceEmptyItem(8, 0);
+        PlaceEmptyItem(9, 0);
+        PlaceEmptyItem(10, 0);
+
+        PlaceEmptyItem(0, 1);
+        PlaceEmptyItem(1, 1);
+        PlaceEmptyItem(2, 1);
+        PlaceEmptyItem(3, 1);
+        PlaceEmptyItem(4, 1);
+
+        PlaceEmptyItem(8, 1);
+        PlaceEmptyItem(9, 1);
+        PlaceEmptyItem(10, 1);
+
+        PlaceEmptyItem(0, 2);
+        PlaceEmptyItem(1, 2);
+        PlaceEmptyItem(2, 2);
+        PlaceEmptyItem(3, 2);
+
+        PlaceEmptyItem(8, 2);
+        PlaceEmptyItem(9, 2);
+        PlaceEmptyItem(10, 2);
+
+        PlaceEmptyItem(0, 3);
+        PlaceEmptyItem(1, 3);
+        PlaceEmptyItem(2, 3);
+
+        PlaceEmptyItem(8, 3);
+        PlaceEmptyItem(9, 3);
+        PlaceEmptyItem(10, 3);
+    }
+
+    public void LoadLevel4()
+    {
+        PlaceEmptyItem(0, 0);
+        PlaceEmptyItem(1, 0);
+        PlaceEmptyItem(2, 0);
+        PlaceEmptyItem(3, 0);
+        PlaceEmptyItem(4, 0);
+        PlaceEmptyItem(5, 0);
+        PlaceEmptyItem(6, 0);
+        PlaceEmptyItem(7, 0);
+        PlaceEmptyItem(8, 0);
+        PlaceEmptyItem(9, 0);
+        PlaceEmptyItem(10, 0);
+
+        PlaceEmptyItem(0, 1);
+        PlaceEmptyItem(1, 1);
+        
+        PlaceEmptyItem(9, 1);
+        PlaceEmptyItem(10, 1);
+
+        PlaceEmptyItem(0, 2);
+        PlaceEmptyItem(1, 2);
+
+        PlaceEmptyItem(9, 2);
+        PlaceEmptyItem(10, 2);
+
+        PlaceEmptyItem(0, 3);
+        PlaceEmptyItem(1, 3);
+        PlaceEmptyItem(2, 3);
+        PlaceEmptyItem(3, 3);
+
+        PlaceEmptyItem(7, 3);
+        PlaceEmptyItem(8, 3);
+        PlaceEmptyItem(9, 3);
+        PlaceEmptyItem(10, 3);
+    }
+
+    private void PlaceEmptyItem(int x, int y)
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        selectedItem = inventoryItem;
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvasTransform);
+        rectTransform.SetAsLastSibling();
+
+        int selectedItemID = 0;
+        inventoryItem.Set(items[selectedItemID]);
+
+
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+        Vector2Int? posOnGrid = new Vector2Int(x, y);
+
+        endItemGrid.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 }

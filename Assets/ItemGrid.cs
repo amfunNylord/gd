@@ -7,7 +7,7 @@ public class ItemGrid : MonoBehaviour
 {
     public const float tileSizeWidth = 32;
     public const float tileSizeHeight = 32;
-    InventoryItem[,] inventoryItemSlot;
+    public InventoryItem[,] inventoryItemSlot;
     RectTransform rectTransform;
     [SerializeField] int gridSizeWidth = 20;
     [SerializeField] int gridSizeHeight = 10;
@@ -119,6 +119,10 @@ public class ItemGrid : MonoBehaviour
     {
         InventoryItem toReturn = inventoryItemSlot[x, y];
 
+        if (toReturn.itemData.name == "Empty")
+        {
+            return null;
+        }
         if (toReturn == null)
         {
             return null;
@@ -149,6 +153,13 @@ public class ItemGrid : MonoBehaviour
         { 
             return false; 
         }
+        InventoryItem toReturn = inventoryItemSlot[posX, posY];
+
+        if (toReturn != null && toReturn.itemData.name == "Empty")
+        {
+            return false;
+        }
+
         return true;
     }
 
